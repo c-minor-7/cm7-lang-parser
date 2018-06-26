@@ -14,11 +14,22 @@ BNF:
 
    <lyrics-line> ::= <chars>
 
-<opt-whitespace> ::= | "" |  " " <opt-whitespace>
+<opt-whitespace> ::= "" |  " " <opt-whitespace>
 
          <chord> ::= <note><quality><additions><base>
 
-          <note> ::= A | B | C | D | E | F | G
+          <note> ::= "C" |
+                     "C#" | "Db" |
+                     "D" |
+                     "D#" | "Eb" |
+                     "E" |
+                     "F" |
+                     "F#" | "Gb" |
+                     "G" |
+                     "G#" | "Ab" |
+                     "A" |
+                     "A#" | "Bb" |
+                     "B"
 
        <quality> ::= "" | "m" | "sus2" | "sus4" | "dim" | "aug" |
                      "7" | "M7" | "m7" | "mM7"
