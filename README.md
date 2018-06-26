@@ -16,17 +16,17 @@ The AST would be in the following structure (see more [here](https://github.com/
 
 ```js
 {
-  type: string;
-  text: string;
-  start: number;
-  end: number;
-  children: AST[];
-  parent: AST;
-  fullText: string;
-  errors: TokenError[];
-  rest: string;
-  fragment?: boolean;
-  lookup?: boolean;
+  type: string,
+  text: string,
+  start: number,
+  end: number,
+  children: AST[],
+  parent: AST,
+  fullText: string,
+  errors: TokenError[],
+  rest: string,
+  fragment?: boolean,
+  lookup?: boolean,
 }
 ```
 
