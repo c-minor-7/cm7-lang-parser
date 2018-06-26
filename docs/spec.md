@@ -2,47 +2,43 @@
 
 ## Syntax
 
-BNF:
+W3C EBNF (https://www.ietf.org/rfc/rfc4627.txt):
+
 ```bnf
-           <cm7> ::= <lines>
+cm7         ::= lines
 
-         <lines> ::= <line> | <lines>
+lines       ::= line*
 
-          <line> ::= <EOL> | <chord-line> <EOL> <lyrics-line> <EOL>
+line        ::= chord_line EOL lyrics_line EOL? | eol
 
-    <chord-line> ::= <opt-whitespace> | <opt-whitespace> <chord-line> | <chord> <chord-line>
+chord_line  ::= WS* chord (WS+ chord)* WS*
 
-   <lyrics-line> ::= <chars> | <lyrics-line> ( <chars> ) <lyrics-line>
-         <chars> ::= "" | [^()]* <chars>
+lyrics_line ::= WS* lyrics? (lyrics_beat+ lyrics?)* WS*
 
-<opt-whitespace> ::= "" |  " " <opt-whitespace>
+lyrics      ::= [^()\n\r]+
+lyrics_beat ::= "(" [^()\n\r]* ")"
 
-         <chord> ::= <note><quality><additions><base>
+chord       ::= note quality? addition* base?
 
-          <note> ::= "C" |
-                     "C#" | "Db" |
-                     "D" |
-                     "D#" | "Eb" |
-                     "E" |
-                     "F" |
-                     "F#" | "Gb" |
-                     "G" |
-                     "G#" | "Ab" |
-                     "A" |
-                     "A#" | "Bb" |
-                     "B"
+note        ::= [ACDFG] "#" | [ABDEG] "b" | [A-G]
 
-       <quality> ::= "" | "m" | "sus2" | "sus4" | "dim" | "aug" |
-                     "7" | "M7" | "m7" | "mM7"
-                     "6" | "9" |
-                     "aug" | "aug7" |
-                     "dim" | "dim7" | "m7b5"
+quality     ::= "mM7" | "m7b5" | "m7" | "m" |
+                "sus2" | "sus4" |
+                "7" | "M7" |
+                "6" | "9" |
+                "aug7" | "aug" |
+                "dim7" | "dim"
 
-      <additions> ::= "" | "add" <modifier> <interval> <additions>
+addition    ::= "add" modifier? interval
 
-           <base> ::= "" | "/" <note>
+base        ::= "/" modifier? note
 
-       <interval> ::= "2" | "4" | "6" | "9" | "11" | "13"
+interval    ::= "2" | "4" | "6" | "9" | "11" | "13"
 
-       <modifier> ::= "" | "#" | "b"
+modifier    ::= "#" | "b"
+
+WS          ::= [ \t]
+EOL         ::= [\n\r]
+eol         ::= EOL
+STRING      ::= [^\n\r]*
 ```
