@@ -1,0 +1,5 @@
+# Language Specification
+
+## Syntax
+WIP
+
