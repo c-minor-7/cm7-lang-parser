@@ -12,7 +12,8 @@ BNF:
 
     <chord-line> ::= <opt-whitespace> | <opt-whitespace> <chord-line> | <chord> <chord-line>
 
-   <lyrics-line> ::= <chars>
+   <lyrics-line> ::= <chars> | <lyrics-line> ( <chars> ) <lyrics-line>
+         <chars> ::= "" | [^()]* <chars>
 
 <opt-whitespace> ::= "" |  " " <opt-whitespace>
 
