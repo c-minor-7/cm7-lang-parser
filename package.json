@@ -1,6 +1,6 @@
 {
   "name": "cm7-lang-parser",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "Cm7 is a language to represent chords and lyrics. This package is a parser for this language.",
   "main": "lib/index.js",
   "scripts": {
