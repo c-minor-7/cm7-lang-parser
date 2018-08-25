@@ -1,5 +1,7 @@
 # cm7-lang-parser
 
+[![Build Status](https://travis-ci.org/c-minor-7/cm7-lang-parser.svg?branch=master)](https://travis-ci.org/c-minor-7/cm7-lang-parser)
+
 Cm7 is a language to represent chords and lyrics. This package is a parser for the language. See [here](docs/spec.md) for the language specification.
 
 ## Motivation
