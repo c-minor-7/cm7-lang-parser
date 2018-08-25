@@ -9,9 +9,6 @@
     "lint": "eslint --fix",
     "precommit": "lint-staged"
   },
-  "files": [
-    "lib/"
-  ],
   "lint-staged": {
     "*.js": [
       "npm run lint --",
