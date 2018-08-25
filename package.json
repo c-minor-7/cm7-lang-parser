@@ -35,6 +35,6 @@
     "mocha": "^5.2.0"
   },
   "dependencies": {
-    "ebnf": "^1.6.2"
+    "ebnf": "^1.6.3"
   }
 }
