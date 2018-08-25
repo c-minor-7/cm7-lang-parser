@@ -32,12 +32,10 @@ The AST would be in the following structure (see more [here](https://github.com/
 
 ## Language Definition
 
-Please see [here](lib/Cm7.ebnf) in case the following is not up-to-date.
-
-W3C EBNF (https://www.ietf.org/rfc/rfc4627.txt):
+[W3C EBNF](https://www.ietf.org/rfc/rfc4627.txt):
 
 ```bnf
-cm7           ::= EOL* configs EOL song
+cm7           ::= EOL* configs EOL+ song
 
 configs       ::= key_config
 key_config    ::= "key" WS? "=" WS? note
@@ -45,21 +43,22 @@ note          ::= [ACDFG] "#" | [ABDEG] "b" | [A-G]
 
 song          ::= section? (EOL+ section?)*
 
-section       ::= line*
+section       ::= ("::" WS* section_label WS* "::" EOL)? line (EOL line)*
+section_label ::= [^:]+
 
-line          ::= chord_line EOL lyrics_line EOL?
+line          ::= WS* chord_line? WS* (EOL WS* lyrics_line WS*)?
 
-chord_line    ::= WS* chord (WS+ chord)* WS*
+chord_line    ::= chord (WS+ chord)*
 chord         ::= relative_note quality? addition* base?
 quality       ::= "mM7" | "m7b5" | "m7" | "m" | "sus2" | "sus4" |"7" | "M7" | "6" | "9" | "aug7" | "aug" | "dim7" | "dim"
 addition      ::= "add" modifier? interval
 base          ::= "/" relative_note
-relative_note ::= "1" | "2" | "3" | "4" | "5" | "6" | "7"
+relative_note ::= ("1" | "2" | "3" | "4" | "5" | "6" | "7") ("#" | "b")?
 interval      ::= "2" | "4" | "6" | "9" | "11" | "13"
 modifier      ::= "#" | "b"
 
-lyrics_line   ::= WS* lyrics? (lyrics_beat+ lyrics?)* WS*
-lyrics        ::= [^()\n\r]+
+lyrics_line   ::= lyrics? (lyrics_beat+ lyrics?)*
+lyrics        ::= [^()\n\r1234567]+
 lyrics_beat   ::= "(" lyrics? ")"
 
 
@@ -73,6 +72,11 @@ EOL           ::= [\n\r]
 ```
 key=Eb
 
+:: intro ::
+1 6m
+2m 5sus4 5
+
+:: verse ::
 1 6m
 ()在夜晚 說(早)晨
 2m 5sus4 5
@@ -91,6 +95,7 @@ key=Eb
 4 2m 2m 3m 4 5
 誰(變)賣 誰(棄)掉 誰(看)(到)(破)(曉)
 
+:: chorus ::
 1 6m
 ()漸漸我甚(麼)都不想知道
 2m 4/5
@@ -109,6 +114,12 @@ key=Eb
 7b 5/7
 懷念(只)可鋪滿被(單)
 ```
+
+See more examples [here](./test/cm7s).
+
+## Credits
+
+Thanks to the awesome [node-ebnf](https://github.com/menduz/node-ebnf) which made this language possible.
 
 ## Author
 
