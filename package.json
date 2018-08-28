@@ -7,6 +7,7 @@
     "pretest": "npm run build",
     "test": "jest",
     "preversion": "npm test && npm run build",
+    "version": "git add dist",
     "lint": "eslint --fix",
     "precommit": "lint-staged",
     "clean": "/bin/rm -rf dist",
