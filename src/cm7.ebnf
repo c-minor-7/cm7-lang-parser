@@ -1,6 +1,3 @@
-const { Grammars } = require('ebnf');
-
-const CM7_EBNF = `
 cm7           ::= EOL* configs EOL+ song
 
 configs       ::= key_config
@@ -31,8 +28,4 @@ EMPTY_LINE    ::= "-"+
 
 WS            ::= [ \t]+
 EOL           ::= [\n\r]
-`;
 
-const parser = new Grammars.W3C.Parser(CM7_EBNF);
-
-module.exports = (cm7Src) => parser.getAST(cm7Src);

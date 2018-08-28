@@ -1,7 +1,0 @@
-*.sw*
-.DS_Store
-node_modules
-npm-debug.log*
-test
-.eslintrc.json
-.travis.yml
