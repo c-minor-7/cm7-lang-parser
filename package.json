@@ -4,6 +4,7 @@
   "description": "Cm7 is a language to represent chords and lyrics. This package is a parser for this language.",
   "main": "lib/index.js",
   "scripts": {
+    "pretest": "npm run build",
     "test": "jest",
     "preversion": "npm test && npm run build",
     "lint": "eslint --fix",

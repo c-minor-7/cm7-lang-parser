@@ -1,7 +1,7 @@
 const { join } = require('path');
 const { readFileSync, readdirSync } = require('fs');
 
-const parseCm7 = require('../lib/index');
+const parseCm7 = require('../dist/parseCm7.umd.js');
 
 const astToSnapshot = ({ type, text, children }) => ({
   type,
