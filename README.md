@@ -34,7 +34,8 @@ The AST would be in the following structure (see more [here](https://github.com/
 
 ## Language Definition
 
-[W3C EBNF](https://www.ietf.org/rfc/rfc4627.txt):
+This language is defined with [W3C EBNF](https://www.ietf.org/rfc/rfc4627.txt).
+The ebnf definition is located [here](./src/cm7.ebnf) in case this README is not up to date.
 
 ```bnf
 cm7           ::= EOL* configs EOL+ song
@@ -48,7 +49,7 @@ song          ::= section? (EOL+ section?)*
 section       ::= ("::" WS* section_label WS* "::" EOL)? line (EOL line)*
 section_label ::= [^:]+
 
-line          ::= WS* chord_line? WS* (EOL WS* lyrics_line WS*)?
+line          ::= WS* (EMPTY_LINE | chord_line) WS* (EOL WS* (EMPTY_LINE | lyrics_line) WS*)
 
 chord_line    ::= chord (WS+ chord)*
 chord         ::= relative_note quality? addition* base?
@@ -60,9 +61,10 @@ interval      ::= "2" | "4" | "6" | "9" | "11" | "13"
 modifier      ::= "#" | "b"
 
 lyrics_line   ::= lyrics? (lyrics_beat+ lyrics?)*
-lyrics        ::= [^()\n\r1234567]+
+lyrics        ::= [^\n\r()]+
 lyrics_beat   ::= "(" lyrics? ")"
 
+EMPTY_LINE    ::= "-"+
 
 WS            ::= [ \t]+
 EOL           ::= [\n\r]
